@@ -54,16 +54,17 @@ class MainActivity : AppCompatActivity() {
 
         binding.spnMainEstado.adapter = spinnerAdapter
 
+        //
         binding.btnMainCalcular.setOnClickListener {
 
             val valor = binding.edtMainValor.text.toString().trim()
             val estado = binding.spnMainEstado.selectedItem.toString()
 
-            if (valor == ""){
-                Toast.makeText(this,"Campo valor é obrigatório", Toast.LENGTH_LONG).show()
+            if (valor.isEmpty()) {
+                Toast.makeText(this,"Preencha todos os campos", Toast.LENGTH_LONG).show()
+            } else if (estado == listaEstados[0]){
+                Toast.makeText(this,"Preencha todos os campos", Toast.LENGTH_LONG).show()
 
-            if (estado == listaEstados[0]){
-                Toast.makeText(this,"Campo estado é obrigatório", Toast.LENGTH_LONG).show()
             // Valor 2.5%
             } else if (estado == listaEstados[2] || estado == listaEstados[17] ||
                         estado == listaEstados[20] || estado == listaEstados[6]||
@@ -71,30 +72,28 @@ class MainActivity : AppCompatActivity() {
                         estado == listaEstados[5] || estado == listaEstados[21] ||
                         estado == listaEstados[12] || estado == listaEstados[9]){
                 val ipva = (valor.toBigDecimal() * 2.50.toBigDecimal()) / 100.00.toBigDecimal()
-                binding.txtMainResultado.text = ("O valor do IPVA é: %.2f".format(ipva))
+                binding.txtMainResultado.text = ("O valor do IPVA é: R$ %.2f".format(ipva))
             // Valor 2.0%
             } else if (estado == listaEstados[1] || estado == listaEstados[27] ||
                         estado == listaEstados[8] || estado == listaEstados[24] ||
                         estado == listaEstados[26] || estado == listaEstados[15]){
                 val ipva = (valor.toBigDecimal() * 2.00.toBigDecimal()) / 100.00.toBigDecimal()
-                binding.txtMainResultado.text = ("O valor do IPVA é: %.2f".format(ipva))
+                binding.txtMainResultado.text = ("O valor do IPVA é: R$ %.2f".format(ipva))
             // Valor 3.5%
             } else if (estado == listaEstados[16]){
                 val ipva = (valor.toBigDecimal() * 3.50.toBigDecimal()) / 100.00.toBigDecimal()
-                binding.txtMainResultado.text = ("O valor do IPVA é: %.2f".format(ipva))
+                binding.txtMainResultado.text = ("O valor do IPVA é: R$ %.2f".format(ipva))
             // Valor 3.0%
             } else if (estado == listaEstados[21] || estado == listaEstados[11] ||
                 estado == listaEstados[7] || estado == listaEstados[25]||
                 estado == listaEstados[3] || estado == listaEstados[4] ||
                 estado == listaEstados[22] || estado == listaEstados[23]) {
                 val ipva = (valor.toBigDecimal() * 3.00.toBigDecimal()) / 100.00.toBigDecimal()
-                binding.txtMainResultado.text = ("O valor do IPVA é: %.2f".format(ipva))
+                binding.txtMainResultado.text = ("O valor do IPVA é: R$ %.2f".format(ipva))
             // Valor 4.0%
             } else if (estado == listaEstados[19] || estado == listaEstados[13]){
                 val ipva = (valor.toBigDecimal() * 4.00.toBigDecimal()) / 100.00.toBigDecimal()
-                binding.txtMainResultado.text = ("O valor do IPVA é: %.2f".format(ipva))
-            } else {
-
+                binding.txtMainResultado.text = ("O valor do IPVA é: R$ %.2f".format(ipva))
             }
         }
     }
